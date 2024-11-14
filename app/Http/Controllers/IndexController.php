@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     public function index() {
-        
+
 // Alternative to using Tinker
 //        dd(Listing::where('beds', '=', 4)->orderBy('price', 'asc')->first());
 
