@@ -1,7 +1,7 @@
 
 <template>
-    <Link href="/">Main page</Link>&nbsp;
-    <Link href="/hello">Show page</Link>
+    <Link href="/listing">Listings</Link>&nbsp;
+    <Link href="/listing/create">Create new listing</Link>
 <!--    <div>The page with time {{timer}}</div>-->
     <div v-if="flashSuccess" class="success">
         {{ flashSuccess }}
