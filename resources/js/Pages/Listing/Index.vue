@@ -8,6 +8,9 @@
         <div>
             <Link :href="`/listing/${listing.id}/edit`">Edit listing</Link>
         </div>
+        <div>
+            <Link :href="`/listing/${listing.id}`" method="DELETE" as="button">Delete listing</Link>
+        </div>
     </div>
 </template>
 
