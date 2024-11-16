@@ -1,7 +1,9 @@
 
 <template>
-    <Link href="/listing">Listings</Link>&nbsp;
-    <Link href="/listing/create">Create new listing</Link>
+<!--    <Link href="/listing">Listings</Link>&nbsp;-->
+<!--    <Link href="/listing/create">Create new listing</Link>-->
+    <Link :href="route('listing.index')"> Listings </Link>
+    <Link :href="route('listing.create')"> Create new listing </Link>
 <!--    <div>The page with time {{timer}}</div>-->
     <div v-if="flashSuccess" class="success">
         {{ flashSuccess }}
