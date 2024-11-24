@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 class ListingController extends Controller
 {
     /**
+     * Alternative to specifying middleware in the file with routes!
+     */
+//    public function __construct() {
+//        $this->middleware('auth')->except(['index', 'show']);
+//    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()

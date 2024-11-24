@@ -15,6 +15,7 @@ class IndexController extends Controller
 //        dd(Listing::where('beds', '=', 4)->orderBy('price', 'asc')->first());
 
 //        dd(Auth::user());
+//        dd(Auth::check());
 
         return inertia(
             'Index/Index',
