@@ -6,7 +6,6 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
-
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class ListingController extends Controller
@@ -26,13 +25,17 @@ class ListingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return inertia(
             'Listing/Index',
             [
+                'filters' => request()->only([
+                   'priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo'
+                ]),
                 'listings' => Listing::orderByDesc('created_at')
                     ->Paginate(10)
+                    ->withQueryString()
             ]
         );
     }
