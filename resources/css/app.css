@@ -32,4 +32,8 @@
     .btn-primary {
         @apply bg-orange-600 hover:bg-orange-500 text-white font-medium p-2 rounded-md
     }
+    .btn-outline {
+        @apply p-2 rounded-md border shadow-sm border-gray-300 dark:border-gray-800 hover:border-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 dark:hover:bg-gray-800
+    }
+
 }
