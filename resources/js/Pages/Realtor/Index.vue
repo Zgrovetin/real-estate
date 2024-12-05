@@ -37,7 +37,7 @@
     import ListingSpace from "@/Components/ListingSpace.vue";
     import ListingAddress from "@/Components/ListingAddress.vue";
     import { Link } from '@inertiajs/vue3'
-    import Edit from "@/Pages/Listing/Edit.vue";
+    // import Edit from "@/Pages/Listing/Edit.vue";
     import RealtorFilters from "@/Pages/Realtor/Index/Components/RealtorFilters.vue";
 
     defineProps({listings: Array})
