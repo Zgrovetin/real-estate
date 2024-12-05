@@ -22,7 +22,7 @@
                     <Link class="btn-outline text-xs font-medium">
                         Edit
                     </Link>
-                    <Link class="btn-outline text-xs font-medium">
+                    <Link class="btn-outline text-xs font-medium" :href="route('realtor.listing.destroy', {listing: listing.id })" as="button" method="delete">
                         Delete
                     </Link>
                 </div>
