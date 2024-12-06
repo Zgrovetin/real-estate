@@ -2,7 +2,7 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import MainLayout from '@/Layouts/MainLayout.vue'
-import {ZiggyVue} from 'ziggy'
+import { ZiggyVue } from 'ziggy'
 import '../css/app.css'
 
 createInertiaApp({
@@ -22,6 +22,10 @@ createInertiaApp({
             .mount(el)
     },
     progress: {
-        color: '#d96f1e',
+        delay: 0,
+        color: '#ea580c',
+        includeCSS: true,
+        showSpinner: false,
+
     },
 })
