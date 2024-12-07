@@ -27,13 +27,15 @@ class RealtorListingController extends Controller
             'deleted' => $request->boolean('deleted'),
             ...$request->only(['by', 'order'])
         ];
+//        dd($filters);
 
         return inertia('Realtor/Index',
-            ['listings' => Auth::user()
-                ->listings()
-//                ->mostRecent()
-                ->filter($filters)
-                ->get()
+            [   'filters' => $filters,
+                'listings' => Auth::user()
+                    ->listings()
+                    ->filter($filters)
+                    ->paginate(5)
+                    ->withQueryString()
             ]
         );
     }
