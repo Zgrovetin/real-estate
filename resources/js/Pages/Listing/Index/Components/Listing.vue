@@ -13,14 +13,6 @@
                 <ListingAddress :listing="listing" class="text-gray-500"/>
             </Link>
         </div>
-        <div>
-            <Link :href="route('listing.edit', {listing: listing.id})">
-                Edit listing
-            </Link>
-        </div>
-        <div>
-            <Link :href="route('listing.destroy',{listing: listing.id})" method="DELETE" as="button">Delete listing</Link>
-        </div>
     </Box>
 </template>
 

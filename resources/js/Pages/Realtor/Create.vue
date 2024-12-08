@@ -1,9 +1,9 @@
 <template>
-    <form @submit.prevent="update">
+    <form @submit.prevent="create">
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-2">
                 <label class="label">Beds</label>
-                <input v-model.number="form.beds" type="text" class="input" />
+                <input v-model.number="form.beds" type="text" class="input"/>
                 <div v-if="form.errors.beds" class="input-error">
                     {{ form.errors.beds }}
                 </div>
@@ -27,7 +27,7 @@
 
             <div class="col-span-4">
                 <label class="label">City</label>
-                <input type="text" v-model="form.city" class="input"  />
+                <input type="text" v-model="form.city" class="input" />
                 <div v-if="form.errors.city" class="input-error">
                     {{ form.errors.city }}
                 </div>
@@ -51,7 +51,7 @@
 
             <div class="col-span-2">
                 <label class="label">Street Nr</label>
-                <input type="text" v-model.number="form.street_nr" class="input"/>
+                <input type="text" v-model.number="form.street_nr" class="input" />
                 <div v-if="form.errors.street_nr" class="input-error">
                     {{ form.errors.street_nr }}
                 </div>
@@ -59,45 +59,31 @@
 
             <div class="col-span-6">
                 <label class="label">Price</label>
-                <input type="text" v-model.number="form.price" class="input"/>
+                <input type="text" v-model.number="form.price" class="input" />
                 <div v-if="form.errors.price" class="input-error">
                     {{ form.errors.price }}
                 </div>
             </div>
 
             <div class="col-span-6">
-                <button type="submit" class="btn-primary" >Edit</button>
+                <button type="submit" class="btn-primary" >Create</button>
             </div>
         </div>
     </form>
 </template>
 
 <script setup>
-    import { useForm } from '@inertiajs/vue3'
-
-    const props = defineProps({
-        listing: Object,
-    })
+import {Link, useForm} from '@inertiajs/vue3'
 
     const form = useForm({
-        beds: props.listing.beds,
-        baths: props.listing.baths,
-        area: props.listing.area,
-        city: props.listing.city,
-        street: props.listing.street,
-        code: props.listing.code,
-        street_nr: props.listing.street_nr,
-        price: props.listing.price,
+        beds: 0,
+        baths: 0,
+        area: 0,
+        city: null,
+        street: null,
+        code: null,
+        street_nr: null,
+        price: 0,
     })
-    const update = () => form.put(route('listing.update',{id: props.listing.id}))
+    const create = () => form.post(route('realtor.listing.store'))
 </script>
-
-<style scoped>
-label {
-    margin-right: 2em;
-}
-
-div {
-    padding: 2px
-}
-</style>
