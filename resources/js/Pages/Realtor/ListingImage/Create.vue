@@ -20,7 +20,7 @@
 <script setup>
     import { computed } from 'vue'
     import Box from "@/Components/UI/Box.vue";
-    import {useForm} from "@inertiajs/vue3";
+    import { useForm } from "@inertiajs/vue3";
 
     const props = defineProps({listing: Object})
 
