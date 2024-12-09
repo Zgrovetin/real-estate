@@ -41,10 +41,15 @@
                         </Link>
                     </div>
                     <div class="mt-2">
-                        <Link
+                        <Link v-if="listing.images_count-1"
                             :href="route('realtor.listing.image.create', {listing: listing.id})"
                             class="block w-full btn-outline text-xs font-medium text-center" >
-                            Images
+                             Images ({{ listing.images_count }})
+                        </Link>
+                        <Link v-else
+                            :href="route('realtor.listing.image.create', {listing: listing.id})"
+                            class="block w-full btn-outline text-xs font-medium text-center" >
+                             Image ({{ listing.images_count }})
                         </Link>
                     </div>
                 </section>
