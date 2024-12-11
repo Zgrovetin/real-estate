@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class Offer extends Model
 {
@@ -21,4 +23,8 @@ class Offer extends Model
         return $this->belongsTo(User::class, 'bidder_id');
     }
 
+    public function scopeByMe(Builder $query): Builder
+    {
+        return $query->where('bidder_id', Auth::user()?->id);
+    }
 }
