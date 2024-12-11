@@ -52,6 +52,18 @@
                              Image ({{ listing.images_count }})
                         </Link>
                     </div>
+                    <div class="mt-2">
+                        <Link v-if="listing.offers_count-1"
+                              :href="route('realtor.listing.show', {listing: listing.id})"
+                              class="block w-full btn-outline text-xs font-medium text-center" >
+                            Offers ({{ listing.offers_count }})
+                        </Link>
+                        <Link v-else
+                              :href="route('realtor.listing.show', {listing: listing.id})"
+                              class="block w-full btn-outline text-xs font-medium text-center" >
+                            Offer ({{ listing.offers_count }})
+                        </Link>
+                    </div>
                 </section>
             </div>
         </Box>
