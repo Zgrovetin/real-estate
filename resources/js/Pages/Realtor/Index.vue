@@ -41,27 +41,17 @@
                         </Link>
                     </div>
                     <div class="mt-2">
-                        <Link v-if="listing.images_count-1"
+                        <Link
                             :href="route('realtor.listing.image.create', {listing: listing.id})"
                             class="block w-full btn-outline text-xs font-medium text-center" >
-                             Images ({{ listing.images_count }})
-                        </Link>
-                        <Link v-else
-                            :href="route('realtor.listing.image.create', {listing: listing.id})"
-                            class="block w-full btn-outline text-xs font-medium text-center" >
-                             Image ({{ listing.images_count }})
+                             Image<span v-if="listing.images_count-1">s</span> ({{ listing.images_count }})
                         </Link>
                     </div>
                     <div class="mt-2">
-                        <Link v-if="listing.offers_count-1"
+                        <Link
                               :href="route('realtor.listing.show', {listing: listing.id})"
                               class="block w-full btn-outline text-xs font-medium text-center" >
-                            Offers ({{ listing.offers_count }})
-                        </Link>
-                        <Link v-else
-                              :href="route('realtor.listing.show', {listing: listing.id})"
-                              class="block w-full btn-outline text-xs font-medium text-center" >
-                            Offer ({{ listing.offers_count }})
+                            Offer<span v-if="listing.offers_count-1">s</span> ({{ listing.offers_count }})
                         </Link>
                     </div>
                 </section>
