@@ -16,7 +16,8 @@
                 v-for="offer in listing.offers"
                 :key="offer.id"
                 :offer="offer"
-                :listing-price="listing.price" />
+                :listing-price="listing.price"
+                :is-sold="listing.sold_at != null"/>
         </div>
         <div  class="md:col-span-5">
             <Box>
