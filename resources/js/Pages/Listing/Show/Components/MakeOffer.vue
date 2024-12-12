@@ -8,8 +8,8 @@
                 <input v-model.number="form.amount" type="text" class="input" />
                 <input v-model.number="form.amount"
                        type="range" :min="min" :max="max" step="1000"
-                       class="mt-2 w-full h-4 bg-gray-200 rounded-lg
-                       appearance-none cursor-pointer dark:bg-gray-700" />
+                       class="mt-2 w-full h-4 bg-orange-200 rounded-lg
+                       appearance-none cursor-pointer dark:bg-orange-700" />
                 <button type="submit" class="btn-outline w-full mt-2 text-sm">
                     Submit the offer
                 </button>
