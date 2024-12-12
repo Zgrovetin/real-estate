@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -38,6 +38,7 @@ class ListingController extends Controller
                 'filters' => $filters,
                 'listings' => Listing::mostRecent()
                     ->filter($filters)
+                    ->withoutSold()
                     ->Paginate(10)
                     ->withQueryString()
             ]
@@ -52,14 +53,17 @@ class ListingController extends Controller
 //        if (Auth::user()->cannot('view', $listing)) {
 //            abort(403);
 //        }
-
 //        $this->authorize('view', $listing);
+
         $listing->load(['images']);
+        $offer = !Auth::user() ?
+            null : $listing->offers()->byMe()->first();
 
         return inertia(
             'Listing/Show',
             [
-                'listing' => $listing
+                'listing' => $listing,
+                'offerMade' => $offer
             ]
         );
     }
