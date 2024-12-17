@@ -14,7 +14,7 @@
                     <div class="text-gray-500 relative pl-2 py-2 text-lg">
                         <span v-if="notificationCount">Ꙭ</span>
                         <span v-else>Ꚙ</span>
-                        <div class="opacity-80 absolute right-4 top-1 w-5 h-5 bg-green-700 dark:bg-green-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-xs text-center">
+                        <div v-if="notificationCount" class="opacity-80 absolute right-4 top-1 w-5 h-5 bg-green-700 dark:bg-green-400 text-white font-medium border border-white dark:border-gray-900 rounded-full text-xs text-center">
                             {{ notificationCount }}
                         </div>
                     </div>
