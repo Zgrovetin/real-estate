@@ -9,11 +9,11 @@ use Illuminate\Auth\Access\Response;
 
 class ListingPolicy
 {
-    public function before(?User $user, $ability) {
-        if($user?->is_admin /*&& $ability === 'update'*/ ) {
-            return true;
-        }
-    }
+//    public function before(?User $user, $ability) {
+//        if($user?->is_admin /*&& $ability === 'update'*/ ) {
+//            return true;
+//        }
+//    }
     /**
      * Determine whether the user can view any models.
      */

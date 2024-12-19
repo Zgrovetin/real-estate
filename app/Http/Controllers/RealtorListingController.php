@@ -3,31 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-//use Illuminate\Http\Request;
+use Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Controller;
-//use Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class RealtorListingController extends Controller
 {
-
-    use AuthorizesRequests;
-    public function __construct()
-    {
-        $this->authorizeResource(Listing::class, 'listing');
-    }
+//    public function __construct()
+//    {
+//        $this->authorizeResource(Listing::class, 'listing');
+//    }
     public function index(Request $request)
     {
-
+        Gate::authorize(
+          'viewAny', Listing::class
+        );
         $filters = [
             'deleted' => $request->boolean('deleted'),
             ...$request->only(['by', 'order'])
         ];
 
-        return inertia('Realtor/Index',
-            [   'filters' => $filters,
+        return Inertia::render('Realtor/Index',
+            [
+                'filters' => $filters,
                 'listings' => Auth::user()
                     ->listings()
                     ->filter($filters)
@@ -39,21 +39,26 @@ class RealtorListingController extends Controller
         );
     }
 
-    public function show(Listing $listing)
+    public function show(Listing $listing): Response
     {
-        return inertia('Realtor/Show',
-            ['listing' => $listing->load('offers', 'offers.bidder')]
+        return Inertia::render('Realtor/Show',
+            [
+                'listing' => $listing->load(
+                    'offers', 'offers.bidder'
+                )
+            ]
         );
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
-//        $this->authorize('create', Listing::class);
-
-        return inertia('Realtor/Create');
+        Gate::authorize(
+            'create', Listing::class
+        );
+        return Inertia::render('Realtor/Create');
     }
 
     /**
@@ -61,6 +66,9 @@ class RealtorListingController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize(
+            'create', Listing::class
+        );
         $request->user()->listings()->create(
             $request->validate([
                 'beds' => 'required|integer|min:1|max:20',
@@ -74,7 +82,7 @@ class RealtorListingController extends Controller
             ])
         );
 
-        return to_route('realtor.listing.index')->with('success', 'Listing has been created.');
+        return redirect()->route('realtor.listing.index')->with('success', 'Listing has been created.');
     }
 
     /**
@@ -82,7 +90,10 @@ class RealtorListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        return inertia(
+        Gate::authorize(
+            'update', $listing
+        );
+        return Inertia::render(
             'Realtor/Edit',
             [
                 'listing' => $listing
@@ -95,7 +106,9 @@ class RealtorListingController extends Controller
      */
     public function update(Request $request, Listing $listing)
     {
-
+        Gate::authorize(
+            'update', $listing
+        );
         $listing->update(
             $request->validate([
                 'beds' => 'required|integer|min:1|max:20',
@@ -109,7 +122,7 @@ class RealtorListingController extends Controller
             ])
         );
 
-        return to_route('realtor.listing.index')->with('success', 'Listing has been changed.');
+        return redirect()->route('realtor.listing.index')->with('success', 'Listing has been changed.');
     }
 
 
@@ -118,6 +131,9 @@ class RealtorListingController extends Controller
      */
     public function destroy(Listing $listing)
     {
+        Gate::authorize(
+            'delete', $listing
+        );
         $listing->deleteOrFail();
 
         return redirect()->back()->with('success', 'Listing has been deleted.');
@@ -125,6 +141,9 @@ class RealtorListingController extends Controller
 
     public function restore(Listing $listing)
     {
+        Gate::authorize(
+            'restore', $listing
+        );
         $listing->restore();
         return redirect()->back()->with('success', 'Listing has been restored.');
     }
