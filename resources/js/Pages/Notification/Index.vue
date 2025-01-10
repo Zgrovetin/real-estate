@@ -12,7 +12,7 @@
             </div>
             <div>
                 <Link v-if="!notification.read_at"
-                      :href="route('notification.seen,', {notification: notification.id})" as="button" method="put"
+                      :href="route('notification.seen', {notification: notification.id})" as="button" method="put"
                       class="btn-outline text-xs font-medium uppercase">
                     Mark as read
                 </Link>
@@ -34,6 +34,6 @@
     import Pagination from "@/Components/UI/Pagination.vue";
 
     defineProps({
-        notifications: Object
+        notifications: Object,
     })
 </script>
