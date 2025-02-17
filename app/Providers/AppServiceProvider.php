@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Policies\NotificationPolicy;
+use Gate;
+Use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Gate::policy(DatabaseNotification::class,
+        NotificationPolicy::class);
     }
 }

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Offer extends Model
 {
@@ -30,6 +31,6 @@ class Offer extends Model
 
     public function scopeExcept(Builder $query, Offer $offer): Builder
     {
-        return $query->whereNot('id', $offer->id);
+        return $query->whereNot('id','!=', $offer->id);
     }
 }

@@ -10,7 +10,7 @@ class ListingImage extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['filename'];
+    protected $fillable = ['filename' ];
     protected $appends = ['src'];
 
     public function listing(): BelongsTo
